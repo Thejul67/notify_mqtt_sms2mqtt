@@ -1,5 +1,5 @@
 {
-  "name": "MQTT Notification Service",
+  "name": "MQTT Notification Service For SMS2MQTT",
   "render_readme": true,
   "homeassistant": "0.103",
 }
