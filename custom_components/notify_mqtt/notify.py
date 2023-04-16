@@ -3,7 +3,7 @@ import json
 import logging
 
 import voluptuous as vol
-
+import homeassistant.helpers.config_validation as cv
 from homeassistant.components.mqtt import valid_publish_topic
 from homeassistant.components.notify import (
     ATTR_DATA,
