@@ -15,10 +15,13 @@ from homeassistant.components.notify import (
 )
 
 CONF_TOPIC_NAME = "topic"
-
+CONF_TOPIC_NUMERO = "numero"
+CONF_TOPIC_NUMERO_SMS2MQTT = "number"
+CONF_TOPIC_TEXT_SMS2MQTT = "text"
 PLATFORM_SCHEMA = vol.All(
     PLATFORM_SCHEMA.extend(
-        {vol.Required(CONF_TOPIC_NAME): valid_publish_topic,}  # noqa: E231
+        {vol.Required(CONF_TOPIC_NAME): valid_publish_topic,},
+        {vol.Required(CONF_TOPIC_NUMERO): cv.string,}  # noqa: E231
     ),
 )
 
@@ -37,16 +40,13 @@ class MqttNotificationService(BaseNotificationService):
     def __init__(self, config):
         """Initialize the service."""
         self.topic = config[CONF_TOPIC_NAME]
+        self.numero = config[CONF_TOPIC_NUMERO]
 
     async def async_send_message(self, message, **kwargs):
         """Send a message."""
-        dto = {ATTR_MESSAGE: message}
+        dto = {CONF_TOPIC_TEXT_SMS2MQTT: message}
 
-        if ATTR_TITLE in kwargs:
-            dto[ATTR_TITLE] = kwargs[ATTR_TITLE]
-        if ATTR_TARGET in kwargs:
-            dto[ATTR_TARGET] = kwargs[ATTR_TARGET]
-
+        dto[CONF_TOPIC_NUMERO_SMS2MQTT] = self.numero
         data = kwargs.get(ATTR_DATA)
         if data:
             dto.update(data)
