@@ -1,7 +1,7 @@
 {
-  "domain": "notify_mqtt",
-  "name": "Notify MQTT",
-  "version": "0.1.1",
+  "domain": "notify_mqtt SMS2MQTT",
+  "name": "Notify MQTT SMS2MQTT",
+  "version": "0.0.1",
   "documentation": "",
   "requirements": [],
   "dependencies": ["mqtt"],
